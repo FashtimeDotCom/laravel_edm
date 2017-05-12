@@ -24,4 +24,5 @@ Route::group(["namespace"=>"Login"],function(){
 //index路由
 Route::group(["namespace"=>"Index"],function(){
         Route::get("/index","IndexController@index")->name("index");
+        Route::get("/link","LinkController@index")->name("link");
 });
