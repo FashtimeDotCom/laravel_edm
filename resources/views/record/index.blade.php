@@ -44,9 +44,10 @@
                     <tr>
                         <th class="tc" width="5%"><input type="checkbox" name=""></th>
                         <th class="tc">ID</th>
-                        <th>链接名称</th>
-                        <th>链接</th>
-                        <th>阅读次数</th>
+                        <th>标题</th>
+                        <th>邮箱</th>
+                        <th>阅读</th>
+                        <th>模板标题</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -56,11 +57,12 @@
                         <td class="tc">
                             {{$item["id"]}}
                         </td>
-                        <td class="tc">{{$item["link_title"]}}</td>
+                        <td><div style="width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{$item["wwwtitle"]}}</div></td>
+                        <td class="tc">{{$item["email"]}}</td>
                         <td>
-                            {{$item["link_url"]}}
+                            {{$item["read_num"]}}
                         </td>
-                        <td>{{$item["read_num"]}}</td>
+                        <td>{{$item["template_type"]}}</td>
                         <td>{{date("Y-m-d H:i:s",$item["create_time"])}}</td>
                         <td>
                             <a href="#">修改</a>
@@ -72,7 +74,7 @@
 
             </div>
         </div>
-        {!! $data->render() !!}
+        <div style="float:right;">{{ $data->render() }}</div>
     </form>
 
 </body>
