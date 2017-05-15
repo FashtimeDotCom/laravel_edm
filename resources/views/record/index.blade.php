@@ -13,11 +13,11 @@
 
 	<!--结果页快捷搜索框 开始-->
 	<div class="search_wrap">
-        <form action="" method="post">
+        <form action="{{route('record')}}" method="get">
             <table class="search_tab">
                 <tr>
-                    <th width="70">链接名称:</th>
-                    <td><input type="text" name="link_title" placeholder="链接名称"></td>
+                    <th width="70">网站标题:</th>
+                    <td><input type="text" name="title" placeholder="网站标题"></td>
                     <td><input type="submit" name="sub" value="查询"></td>
                 </tr>
             </table>
@@ -48,6 +48,9 @@
                         <th>邮箱</th>
                         <th>阅读</th>
                         <th>模板标题</th>
+                        <th>类型</th>
+                        <th>配置</th>
+                        <th>省份</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -57,12 +60,15 @@
                         <td class="tc">
                             {{$item["id"]}}
                         </td>
-                        <td><div style="width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{$item["wwwtitle"]}}</div></td>
+                        <td>{{str_limit($item["wwwtitle"],30)}}</td>
                         <td class="tc">{{$item["email"]}}</td>
                         <td>
                             {{$item["read_num"]}}
                         </td>
+                        <td>{{$item["template_title"]}}</td>
                         <td>{{$item["template_type"]}}</td>
+                        <td>{{$item["config_title"]}}</td>
+                        <td>{{$item["province"]}}</td>
                         <td>{{date("Y-m-d H:i:s",$item["create_time"])}}</td>
                         <td>
                             <a href="#">修改</a>
@@ -74,7 +80,7 @@
 
             </div>
         </div>
-        <div style="float:right;">{{ $data->render() }}</div>
+{{--        <div style="float:right;">{{ $data->render() }}</div>--}}
     </form>
 
 </body>

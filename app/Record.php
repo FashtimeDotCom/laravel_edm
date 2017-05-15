@@ -19,12 +19,22 @@ class Record extends Model
     }
 
     /**
+     *
+     * @param $province
+     * @return array|bool
+     */
+    public function getProvinceAttribute($province)
+    {
+        return $this->province($province);
+    }
+
+    /**
      * 查询时候使用  域名的所属省市
      * @access public
      */
-    public function province()
+    public function province($key=null)
     {
-        return [
+        $provincese=[
             '北京' => 'beijing',
             '山东' => 'shandong',
             '河南' => 'henan',
@@ -66,6 +76,11 @@ class Record extends Model
             '台湾' => 'taiwan',
             '其他' => 'other',
         ];
+        $flip_arr=array_flip($provincese);
+        if(!empty($key)){
+            return array_key_exists($key,$flip_arr)?$flip_arr[$key]:$flip_arr["other"];
+        }
+        return $flip_arr;
     }
 
     /**
