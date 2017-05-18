@@ -7,8 +7,8 @@
 </head>
 <body style="background:#F3F3F4;">
 <div class="login_box">
-    <h1>Blog</h1>
-    <h2>欢迎使用博客管理平台</h2>
+    <h1>Edm</h1>
+    <h2>欢迎使用EDM管理平台</h2>
     <div class="form">
         @if (Session::get("error"))
             <p style="color:red">{{Session::get("error")}}</p>

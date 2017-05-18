@@ -1,5 +1,5 @@
 <?php
-
+//发送记录相关控制器
 namespace App\Http\Controllers\Index;
 
 use App\Record;
@@ -21,7 +21,7 @@ class RecordController extends Controller
         if(!empty($title)){
             $query->where('wwwtitle','like',"%$title%");
         }
-        $data=$query->paginate(10);
+        $data=$query->orderBy("read_num","desc")->paginate(10);
         return view('record.index',compact('data'));
     }
 }

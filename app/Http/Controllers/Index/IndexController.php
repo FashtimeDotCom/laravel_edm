@@ -1,5 +1,5 @@
 <?php
-
+//首页相关的控制器
 namespace App\Http\Controllers\Index;
 
 use Illuminate\Http\Request;

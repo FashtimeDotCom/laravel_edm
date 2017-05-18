@@ -13,7 +13,7 @@
 
 	<!--结果页快捷搜索框 开始-->
 	<div class="search_wrap">
-        <form action="" method="post">
+        <form action="{{route('link')}}" method="get">
             <table class="search_tab">
                 <tr>
                     <th width="70">链接名称:</th>
@@ -31,7 +31,7 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="#"><i class="fa fa-plus"></i>新增文章</a>
+                    <a href="{{route('link.create')}}"><i class="fa fa-plus"></i>新增文章</a>
                     <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
                 </div>
             </div>
@@ -72,8 +72,20 @@
 
             </div>
         </div>
-        {!! $data->render() !!}
+        <div style="float:right;">{{ $data->render() }}</div>
     </form>
 
 </body>
 </html>
+<script>
+    $(document).ready(function() {
+        @if(Session::get('success'))
+        new PNotify({
+            title: '信息提示!!',
+            text: "{{Session::get('success')}}",
+            type: "success",
+            delay:3000
+        });
+        @endif
+    });
+</script>

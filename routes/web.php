@@ -23,7 +23,13 @@ Route::group(["namespace"=>"Login"],function(){
 
 //index路由
 Route::group(["namespace"=>"Index"],function(){
+        //首页
         Route::get("/index","IndexController@index")->name("index");
+        //链接
         Route::get("/link","LinkController@index")->name("link");
+        Route::get("/link/create","LinkController@create")->name("link.create");
+        Route::post("/link/story","LinkController@story")->name("link.story");
+
+        //发送记录
         Route::get("/record","RecordController@index")->name("record");
 });

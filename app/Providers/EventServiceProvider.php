@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use App\Link;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-
+use App\Observers\LinkObserver;
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -13,9 +14,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
-        ],
+        //监听事件
+//        'App\Events\LinkEvent' => [
+//            'App\Listeners\LinkEventListener',
+//        ],
     ];
 
     /**
@@ -26,7 +28,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
+        Link::observe(new LinkObserver);
     }
 }

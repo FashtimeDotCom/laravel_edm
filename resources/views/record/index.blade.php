@@ -27,16 +27,6 @@
 
     <!--搜索结果页面 列表 开始-->
     <form action="#" method="post">
-        <div class="result_wrap">
-            <!--快捷导航 开始-->
-            <div class="result_content">
-                <div class="short_wrap">
-                    <a href="#"><i class="fa fa-plus"></i>新增文章</a>
-                    <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
-                </div>
-            </div>
-            <!--快捷导航 结束-->
-        </div>
 
         <div class="result_wrap">
             <div class="result_content">
@@ -52,7 +42,6 @@
                         <th>配置</th>
                         <th>省份</th>
                         <th>创建时间</th>
-                        <th>操作</th>
                     </tr>
                     @foreach($data as $item)
                     <tr>
@@ -70,17 +59,13 @@
                         <td>{{$item["config_title"]}}</td>
                         <td>{{$item["province"]}}</td>
                         <td>{{date("Y-m-d H:i:s",$item["create_time"])}}</td>
-                        <td>
-                            <a href="#">修改</a>
-                            <a href="#">删除</a>
-                        </td>
                     </tr>
                     @endforeach
                 </table>
 
             </div>
         </div>
-{{--        <div style="float:right;">{{ $data->render() }}</div>--}}
+        <div style="float:right;">{{ $data->render() }}</div>
     </form>
 
 </body>
