@@ -7,5 +7,8 @@ use App\Http\Controllers\Controller;
 
 class AccessController extends Controller
 {
-    //
+    public function linkJump($link_id,$record_id)
+    {
+        dd($link_id,$record_id);die;
+    }
 }

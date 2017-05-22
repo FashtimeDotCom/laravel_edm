@@ -10,13 +10,4 @@ return [
     'emailDomain'=>[
         "domain"=>"http://edm.salesman.cc"
     ]
-
-
-
-
-
-
-
-
-
 ];

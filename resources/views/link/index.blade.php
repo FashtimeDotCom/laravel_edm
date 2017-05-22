@@ -63,8 +63,7 @@
                         <td>{{$item["read_num"]}}</td>
                         <td>{{date("Y-m-d H:i:s",$item["create_time"])}}</td>
                         <td>
-                            <a href="#">修改</a>
-                            <a href="#">删除</a>
+                            <a href="{{route('link.edit',["id"=>$item["id"]])}}">修改</a>
                         </td>
                     </tr>
                     @endforeach

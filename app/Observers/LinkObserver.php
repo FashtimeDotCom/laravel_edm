@@ -10,17 +10,21 @@ namespace App\Observers;
 
 use App\Link;
 use ClassPreloader\Config;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\URL;
 
 class LinkObserver
 {
-    public function creating(Link $link)
+    /**
+     * 添加数据完成后,再次从模型中获取数据并添加数据后 执行修改
+     * @param Link $link
+     */
+    public function created(Link $link)
     {
-        echo url("subscription/linkjump");die;
-
-//        $link_url= urldecode(config('basicconfig.emailDomain.domain').Url::build("Unsubscribeemail/linkJump","link_id=".$link->id."&record_id={{id}}"));
-
-        dd($link);die;
-        dd(config('basicconfig.emailDomain.domain'));die;
+        //要跳转的url
+        $url=config('basicconfig.emailDomain.domain')."/index/unsubscribeemail/linkjump/link_id/".$link->id."/record_id/{{id}}.html";
+        $link->link_url=$url;
+        $link->save();
     }
 
 }
