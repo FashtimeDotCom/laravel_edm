@@ -7,7 +7,7 @@
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">商品管理</a> &raquo; 添加商品
+        <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">xxxx</a> &raquo; 模板管理
     </div>
     <!--面包屑导航 结束-->
 
@@ -16,8 +16,8 @@
         <form action="{{route('link')}}" method="get">
             <table class="search_tab">
                 <tr>
-                    <th width="70">链接名称:</th>
-                    <td><input type="text" name="link_title" placeholder="链接名称"></td>
+                    <th width="70">模板名称:</th>
+                    <td><input type="text" name="link_title" placeholder="模板名称"></td>
                     <td><input type="submit" name="sub" value="查询"></td>
                 </tr>
             </table>
@@ -31,7 +31,8 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="{{route('link.create')}}"><i class="fa fa-plus"></i>新增链接</a>
+                    <a href="{{route('link.create')}}"><i class="fa fa-plus"></i>新增模板</a>
+                    <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
                 </div>
             </div>
             <!--快捷导航 结束-->

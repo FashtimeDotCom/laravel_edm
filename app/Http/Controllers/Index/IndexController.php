@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
-        $manager=$request->user()->name;
+        $manager=($request->user()?$request->user()->name:"");
         return view('index.index',compact("manager"));
     }
 }

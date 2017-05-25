@@ -13,14 +13,14 @@
 <!--结果集标题与导航组件 结束-->
 
 <div class="result_wrap">
-    <form action="{{route('link.story')}}" method="post">
+    <form action="{{url('link/update',["id"=>$data->id])}}" method="post">
         {{csrf_field()}}
         <table class="add_tab">
             <tbody>
             <tr>
                 <th width="120"><i class="require">*</i>名称：</th>
                 <td>
-                    <input type="text" name="link_title" value="{{old('link_title')}}">
+                    <input type="text" name="link_title" value="{{old('link_title')?old('link_title'):$data->link_title}}">
                     @if($errors->has("link_title"))
                         <div style="color:red;">{{$errors->first("link_title")}}</div>
                     @endif
@@ -29,7 +29,7 @@
             <tr>
                 <th><i class="require">*</i>链接：</th>
                 <td>
-                    <input type="text" class="lg" name="redirect_url" value="{{old('redirect_url')}}">
+                    <input type="text" class="lg" name="redirect_url" value="{{old('redirect_url')?old('redirect_url'):$data->redirect_url}}">
                     @if($errors->has("redirect_url"))
                         <div style="color:red;">{{$errors->first("redirect_url")}}</div>
                     @endif

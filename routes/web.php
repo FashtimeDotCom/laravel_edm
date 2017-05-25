@@ -24,17 +24,15 @@ Route::group(["namespace"=>"Login"],function(){
 //index首页路由
 Route::group(["namespace"=>"Index"],function(){
         //首页
-        Route::get("/index","IndexController@index")->name("index");
+        Route::get("index","IndexController@index")->name("index");
         //链接
-        Route::get("/link","LinkController@index")->name("link");
-        Route::get("/link/create","LinkController@create")->name("link.create");
-        Route::post("/link/story","LinkController@story")->name("link.story");
+        Route::get("link","LinkController@index")->name("link");
+        Route::get("link/create","LinkController@create")->name("link.create");
+        Route::post("link/story","LinkController@story")->name("link.story");
         Route::get("link/edit/{id}","LinkController@edit")->name("link.edit");
+        Route::post("link/update/{id}","LinkController@update");
         //发送记录
-        Route::get("/record","RecordController@index")->name("record");
-});
-//对外开放路由
-Route::group(["namespace"=>"External"],function(){
-    //链接
-    Route::get('linkJump/{link_id}/{record_id}','AccessController@linkJump');
+        Route::get("record","RecordController@index")->name("record");
+        //模板
+        Route::get('template','TemplateController@index')->name("template");
 });
