@@ -44,7 +44,7 @@
                 <th><i class="require">*</i>描述：</th>
                 <td>
                     <input type="text" class="lg" name="detail" value="{{old('detail')}}">
-                    @if($errors->has("redirect_url"))
+                    @if($errors->has("detail"))
                         <div style="color:red;">{{$errors->first("detail")}}</div>
                     @endif
                 </td>
@@ -52,27 +52,27 @@
             <tr>
                 <th width="120"><i class="require">*</i>插入链接：</th>
                 <td>
-                    <select name="type">
-                        <option value="0">选择链接</option>
+                    <select id="linkChange">
+                        <option value="">选择链接</option>
                         @foreach($link as $item)
-                            <option value="{{$item['id']}}">{{$item["text"]}}</option>
+                            <option value="{{$item['link_url']}}">{{$item["text"]}}</option>
                         @endforeach
                     </select>
-                    @if($errors->has("type"))
-                        <div style="color:red;">{{$errors->first("type")}}</div>
-                    @endif
                 </td>
             </tr>
             <tr>
                 <th width="120"> </th>
                 <td>
-                    <input type="text" id="" class="lg">
+                    <input type="text" id="trueLink" class="lg">
                 </td>
             </tr>
             <tr>
                 <th width="120">内容:</th>
                 <td>
-                    <textarea id="template_content"  cols="30" rows="10" style="width:100%;height:100%;"></textarea>
+                    <textarea id="template_content" name="content" cols="30" rows="10" style="width:100%;height:100%;"></textarea>
+                    @if($errors->has("content"))
+                        <div style="color:red;">{{$errors->first("content")}}</div>
+                    @endif
                 </td>
             </tr>
             <tr>
@@ -90,13 +90,21 @@
 </body>
 </html>
 <script>
-
+    var info=(function(){
+        return {
+            trueLink:$("#trueLink")
+        };
+    })();
+//编辑器
     var editor1=CKEDITOR.replace('template_content', {
         fullPage: true,
         extraPlugins: 'docprops',
         allowedContent: true,
         height: 320
     } );
-
-
+//change事件
+    $("#linkChange").change(function(){
+        let val=$(this).children('option:selected').val();
+        info.trueLink.val(val);
+    });
 </script>

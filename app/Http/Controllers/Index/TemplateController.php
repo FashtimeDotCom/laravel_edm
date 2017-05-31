@@ -6,6 +6,7 @@ use App\Link;
 use App\Template;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class TemplateController extends Controller
 {
@@ -27,12 +28,36 @@ class TemplateController extends Controller
     public function create(Template $template)
     {
         $type=$template->getType();
-        $link=Link::all(["id","link_title as text"]);
+        $link=Link::all(["link_title as text","link_url"]);
         return view("template.create",compact('type','link'));
     }
 
-    public function story()
+    /**
+     * 添加操作
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function story(Request $request,Template $template)
     {
-
+        $rule=[
+            "title"=>"required|unique:template",
+            "type"=>"required",
+            "detail"=>"required",
+            "content"=>"required"
+        ];
+        $message=[
+            "title.required"=>"请填写标题",
+            "type.required"=>"请选择类型",
+            "detail.required"=>"请填写描述",
+            "content.required"=>"请填写内容"
+        ];
+        $validate=Validator::make($request->input(),$rule,$message);
+        if($validate->fails()){
+            return redirect()->back()->withInput()->withErrors($validate);
+        }
+        if(!$template->create($request->input())){
+            return redirect()->with("error","添加失败");
+        }
+        return redirect('template')->with("success","添加成功!");
     }
 }

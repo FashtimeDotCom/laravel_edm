@@ -11,6 +11,10 @@ class Template extends Model
      * @var string
      */
     protected $table="template";
+//    允许填充的字段
+    protected $fillable=["title","type","detail","content"];
+    // 不使用自定义时间错
+    public $timestamps=false;
 
     /**
      * 获取type属性
