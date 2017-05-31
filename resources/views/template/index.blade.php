@@ -31,8 +31,7 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="{{route('link.create')}}"><i class="fa fa-plus"></i>新增模板</a>
-                    <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
+                    <a href="{{route('template.create')}}"><i class="fa fa-plus"></i>新增模板</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -44,9 +43,9 @@
                     <tr>
                         <th class="tc" width="5%"><input type="checkbox" name=""></th>
                         <th class="tc">ID</th>
-                        <th>链接名称</th>
-                        <th>链接</th>
-                        <th>阅读次数</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>描述</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -56,11 +55,11 @@
                         <td class="tc">
                             {{$item["id"]}}
                         </td>
-                        <td class="tc">{{$item["link_title"]}}</td>
+                        <td class="tc">{{$item["title"]}}</td>
                         <td>
-                            {{$item["link_url"]}}
+                            {{$item["type"]}}
                         </td>
-                        <td>{{$item["read_num"]}}</td>
+                        <td>{{$item["detail"]}}</td>
                         <td>{{date("Y-m-d H:i:s",$item["create_time"])}}</td>
                         <td>
                             <a href="{{route('link.edit',["id"=>$item["id"]])}}">修改</a>
@@ -68,7 +67,6 @@
                     </tr>
                     @endforeach
                 </table>
-
             </div>
         </div>
         <div style="float:right;">{{ $data->render() }}</div>

@@ -35,4 +35,6 @@ Route::group(["namespace"=>"Index"],function(){
         Route::get("record","RecordController@index")->name("record");
         //模板
         Route::get('template','TemplateController@index')->name("template");
+        Route::get('template/create','TemplateController@create')->name("template.create");
+        Route::post('template/story',"TemplateController@story")->name("template.story");
 });
