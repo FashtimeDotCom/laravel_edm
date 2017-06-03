@@ -41,4 +41,7 @@ Route::group(["namespace"=>"Index"],function(){
         Route::post('template/update/{id}',"TemplateController@update");
         //发送配置
         Route::get('sendconfig','SendConfigController@index');
+        Route::get('sendconfig/create','SendConfigController@create');
+        Route::post('sendconfig/story','SendConfigController@story');
+
 });

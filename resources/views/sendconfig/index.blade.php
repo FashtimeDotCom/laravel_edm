@@ -13,7 +13,7 @@
 
 	<!--结果页快捷搜索框 开始-->
 	<div class="search_wrap">
-        <form action="{{route('link')}}" method="get">
+        <form action="{{url('sendconfig')}}" method="get">
             <table class="search_tab">
                 <tr>
                     <th width="70">配置名称:</th>
@@ -31,7 +31,7 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="{{route('link.create')}}"><i class="fa fa-plus"></i>新增配置</a>
+                    <a href="{{url('sendconfig/create')}}"><i class="fa fa-plus"></i>新增配置</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -47,7 +47,7 @@
                         <th>省份</th>
                         <th>品牌</th>
                         <th>模板名</th>
-                        <th>分类</th>
+                        <th>发送分类</th>
                         <th>总记录数</th>
                         <th>创建时间</th>
                         <th>操作</th>
@@ -58,11 +58,15 @@
                         <td class="tc">
                             {{$item["id"]}}
                         </td>
-                        <td class="tc">{{$item["title"]}}</td>
+                        <td class="tc"><span title="{{$item['title']}}">{{str_limit($item["title"],15)}}</span></td>
                         <td>
-                            {{$item["link_url"]}}
+                            {{$item["province_id"]}}
                         </td>
-                        <td>{{$item["read_num"]}}</td>
+                        <td>{{$item["brand_name"]}}</td>
+                        <td><span title="{{$item['template_name']}}">{{str_limit($item["template_name"],20)}}</span></td>
+                        <td>{{$item["send_config"]}}</td>
+                        <td>{{$item["count"]}}</td>
+
                         <td>{{date("Y-m-d H:i:s",$item["create_time"])}}</td>
                         <td>
                             <a href="{{route('link.edit',["id"=>$item["id"]])}}">修改</a>
