@@ -27,11 +27,11 @@
 	<div class="menu_box">
 		<ul>
             <li>
-            	<h3><i class="fa fa-fw fa-clipboard"></i>常用操作</h3>
+            	<h3><i class="fa fa-fw fa-clipboard"></i>EDM常用操作</h3>
                 <ul class="sub_menu">
                     <li><a href="{{route('link')}}" target="main"><i class="fa fa-fw fa-plus-square"></i>链接管理</a></li>
                     <li><a href="{{route('template')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>模板管理</a></li>
-                    <li><a href="tab.html" target="main"><i class="fa fa-fw fa-list-alt"></i>tab页</a></li>
+                    <li><a href="{{url('sendconfig')}}" target="main"><i class="fa fa-fw fa-list-alt"></i>邮件配置</a></li>
                     <li><a href="img.html" target="main"><i class="fa fa-fw fa-image"></i>图片列表</a></li>
                 </ul>
             </li>

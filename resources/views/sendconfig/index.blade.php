@@ -7,7 +7,7 @@
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> 首页 &raquo; 模板管理
+        <i class="fa fa-home"></i> 首页 &raquo; 配置管理
     </div>
     <!--面包屑导航 结束-->
 
@@ -16,8 +16,8 @@
         <form action="{{route('link')}}" method="get">
             <table class="search_tab">
                 <tr>
-                    <th width="70">模板名称:</th>
-                    <td><input type="text" name="link_title" placeholder="模板名称"></td>
+                    <th width="70">配置名称:</th>
+                    <td><input type="text" name="link_title" placeholder="配置名称"></td>
                     <td><input type="submit" name="sub" value="查询"></td>
                 </tr>
             </table>
@@ -31,7 +31,7 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="{{route('template.create')}}"><i class="fa fa-plus"></i>新增模板</a>
+                    <a href="{{route('link.create')}}"><i class="fa fa-plus"></i>新增配置</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -44,8 +44,11 @@
                         <th class="tc" width="5%"><input type="checkbox" name=""></th>
                         <th class="tc">ID</th>
                         <th>标题</th>
+                        <th>省份</th>
+                        <th>品牌</th>
+                        <th>模板名</th>
                         <th>分类</th>
-                        <th>描述</th>
+                        <th>总记录数</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -57,16 +60,17 @@
                         </td>
                         <td class="tc">{{$item["title"]}}</td>
                         <td>
-                            {{$item["type"]}}
+                            {{$item["link_url"]}}
                         </td>
-                        <td>{{$item["detail"]}}</td>
+                        <td>{{$item["read_num"]}}</td>
                         <td>{{date("Y-m-d H:i:s",$item["create_time"])}}</td>
                         <td>
-                            <a href="{{route('template.edit',["id"=>$item["id"]])}}">修改</a>
+                            <a href="{{route('link.edit',["id"=>$item["id"]])}}">修改</a>
                         </td>
                     </tr>
                     @endforeach
                 </table>
+
             </div>
         </div>
         <div style="float:right;">{{ $data->render() }}</div>

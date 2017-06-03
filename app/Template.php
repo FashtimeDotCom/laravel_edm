@@ -21,30 +21,36 @@ class Template extends Model
      * @param $type
      * @return string
      */
-    public function getTypeAttribute($type)
-    {
-        $temp="未知";
-        switch($type){
-            case 10:
-                $temp="邮箱";
-                break;
-            case 20:
-                $temp="有道";
-                break;
-        }
-        return $temp;
-    }
+//    public function getTypeAttribute($type)
+//    {
+//        $temp="未知";
+//        switch($type){
+//            case 10:
+//                $temp="邮箱";
+//                break;
+//            case 20:
+//                $temp="有道";
+//                break;
+//        }
+//        return $temp;
+//    }
 
     /**
      * 获取模板分类
      * @return array
      */
-    public function getType()
+    public function getType($id=null)
     {
-        $type=[
-            ["id"=>10,"text"=>"邮箱"],
-            ["id"=>20,"text"=>"有道"]
+        $types= [
+            ["id"=>10,"text" => '邮箱'],
+            ["id"=>20,"text" => '有道'],
+            ["id"=>30,"text" => '七鱼'],
+            ["id"=>40,"text" => '域名'],
+            ["id"=>50,"text" => '其他']
         ];
-        return $type;
+        if(!empty($id)){
+            return array_key_exists($id,$types) ? $types[$id]:"其他";
+        }
+        return $types;
     }
 }

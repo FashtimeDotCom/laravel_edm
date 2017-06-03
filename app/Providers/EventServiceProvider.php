@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Link;
+use App\Template;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use App\Observers\LinkObserver;
+use App\Observers\TemplateObserver;
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -29,5 +31,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
         Link::observe(new LinkObserver);
+        Template::observe(new TemplateObserver);
     }
 }
