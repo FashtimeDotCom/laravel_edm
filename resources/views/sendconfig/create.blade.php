@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     @include('public.meta')
-    @include('public.ckeditor')
 </head>
 <body>
 <!--面包屑导航 开始-->
@@ -14,6 +13,9 @@
 
 <div class="result_wrap">
     <form action="{{url('sendconfig/story')}}" method="post">
+        <input type="hidden" name="brand_id" id="brand_id">
+        <input type="hidden" name="brand_name" id="brand_name">
+
         {{csrf_field()}}
         <table class="add_tab">
             <tbody>
@@ -52,7 +54,7 @@
             <tr>
                 <th width="120"><i class="require">*</i>配置类型：</th>
                 <td>
-                    <select id="linkChange">
+                    <select id="linkChange" name="config_type">
                         <option value="">选择配置</option>
                         @foreach($configType as $item)
                             <option value="{{$item['id']}}">{{$item["text"]}}</option>
@@ -60,34 +62,59 @@
                     </select>
                 </td>
             </tr>
-            <tr>
-                <td>
+            <tr id="show">
+                <th class="email" style="display:none;">邮箱品牌:</th>
+                <td class="email" style="display:none;">
                     <table>
                         <tr>
-                            <th>邮箱品牌:</th>
                             <td>
-                                <select name="brand_id">
-
+                                <select id="emailBrand">
+                                    @foreach($brand as $item)
+                                        @if($item['id']=="all")
+                                            @php
+                                            $check='selected=selected'
+                                            @endphp
+                                        @else
+                                            {{$check=''}}
+                                        @endif
+                                        <option {{$check}} value="{{$item['id']}}" _text="{{$item["name"]}}">{{$item["name"]}}</option>
+                                    @endforeach
                                 </select>
                             </td>
+                            <td><span style="color:red;">默认不选就是取省下全部</span></td>
                         </tr>
                     </table>
                 </td>
-            </tr>
-            <tr>
-                <th><i class="require">*</i>描述：</th>
-                <td>
-                    <input type="text" class="lg" name="detail" value="{{old('detail')}}">
-                    @if($errors->has("detail"))
-                        <div style="color:red;">{{$errors->first("detail")}}</div>
-                    @endif
+                <th class="contacttool" style="display:none;">咨询工具品牌:</th>
+                <td class="contacttool" style="display:none;">
+                    <table>
+                        <tr>
+                            <td>
+                                <select id="contacttoolBrand">
+                                    @foreach($website as $item)
+                                        <option value="{{$item['id']}}" _text="{{$item["text"]}}">{{$item["text"]}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td><span style="color:red;">默认不选就是取省下全部</span></td>
+                        </tr>
+                    </table>
                 </td>
-            </tr>
 
-            <tr>
-                <th width="120"> </th>
-                <td>
-                    <input type="text" id="trueLink" class="lg">
+                <th class="website" style="display:none;">网站类型:</th>
+                <td class="website" style="display:none;">
+                    <table>
+                        <tr>
+                            <td>
+                                <select id="website">
+                                    @foreach($website as $item)
+                                        <option value="{{$item['id']}}" _text="{{$item["text"]}}">{{$item["text"]}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td><span style="color:red;">默认不选就是取省下全部</span></td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
 
@@ -106,21 +133,58 @@
 </body>
 </html>
 <script>
-    var info=(function(){
-        return {
-            trueLink:$("#trueLink")
-        };
+    let info=(function(){
+       return {
+           brand_id:$("#brand_id"),
+           brand_name:$("#brand_name"),
+           linkChange:$("#linkChange"),
+           show:$("#show"),
+           emailBrand:$("#emailBrand"),
+           contacttoolBrand:$("#contacttoolBrand"),
+           website:$("#website")
+
+       };
     })();
-//编辑器
-    var editor1=CKEDITOR.replace('template_content', {
-        fullPage: true,
-        extraPlugins: 'docprops',
-        allowedContent: true,
-        height: 320
-    } );
-//change事件
-    $("#linkChange").change(function(){
+//    配置类型
+    info.linkChange.change(function(){
         let val=$(this).children('option:selected').val();
-        info.trueLink.val(val);
+        switch(val){
+            case "email":
+                info.show.children().hide();
+                info.show.find('.email').show();
+
+                break;
+            case "contacttool":
+                info.show.children().hide();
+                info.show.find('.contacttool').show();
+                break;
+            case "website":
+                info.show.children().hide();
+                info.show.find('.website').show();
+                break;
+        }
     });
+    //邮箱品牌change
+    info.emailBrand.change(function(){
+        let val=$(this).children('option:selected').val();
+        let text=$(this).children('option:selected').attr("_text");
+        info.brand_id.val(val);
+        info.brand_name.val(text);
+    });
+    //咨询工具品牌
+    info.contacttoolBrand.change(function(){
+        let val=$(this).children('option:selected').val();
+        let text=$(this).children('option:selected').attr("_text");
+        info.brand_id.val(val);
+        info.brand_name.val(text);
+    });
+    //网站类型
+    info.website.change(function(){
+        let val=$(this).children('option:selected').val();
+        let text=$(this).children('option:selected').attr("_text");
+        info.brand_id.val(val);
+        info.brand_name.val(text);
+    });
+
+
 </script>

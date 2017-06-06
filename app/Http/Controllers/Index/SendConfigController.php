@@ -23,12 +23,17 @@ class SendConfigController extends Controller
      * 创建页面
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(SendConfig $sendConfig)
+    public function create(SendConfig $sendConfig,ExternalConnect $externalConnect)
     {
-        (new ExternalConnect)->index();
+        //获取省份
         $province=$sendConfig->province();
+        //获取配置类型
         $configType=$sendConfig->configType();
-        return view("sendconfig.create",compact('province','configType'));
+        //获取邮箱品牌
+        $brand=$externalConnect->getBrand();
+        //网站类型
+        $website=$sendConfig->websiteType();
+        return view("sendconfig.create",compact('website','province','configType','brand'));
     }
 
     public function story()

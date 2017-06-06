@@ -89,4 +89,17 @@ class SendConfig extends Model
         ];
         return $data;
     }
+
+    /**
+     * 网站类型
+     * @return array
+     */
+    public function websiteType()
+    {
+        return [
+            ["id" => "all", "text" => "全部"],
+            ["id" => "none_website", "text" => "没有网站"],
+            ["id" => "have_website", "text" => "有网站"]
+        ];
+    }
 }
